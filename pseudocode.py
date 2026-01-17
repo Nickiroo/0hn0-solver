@@ -30,25 +30,6 @@
 
 #helpers
 
-def extend_border_inwards(tile,side,amount):
-    match side:
-        case top:
-            for i in amount:
-                fill([tile.x][tile.y+i])
-                return
-        case right:
-            for i in amount:
-                fill([tile.x-i][tile.y])
-                return
-        case bottom:
-            for i in amount:
-                fill([tile.x][tile.y-i])
-                return
-        case left:
-            for i in amount:
-                fill([tile.x+i][tile.y])
-                return
-
 #Border cases
 
 #case 1

@@ -74,7 +74,37 @@ def border_status(x,y):
     # 8. right column non-corner
     if cornval == 0 and right == True: return 8
     return 0
-    
+
+def free_space(x,y,puz):
+    #For a given tile, count how much room in each direction before running into a border or a filled tile
+    puz_size = puz.shape[0]
+
+    #up space
+    up = 0
+    for i in range(x):
+        if puz[x-i-1, y] == 99:break
+        up += 1
+
+    #right space
+    right = 0
+    for i in range(puz_size-y-1):
+        if puz[x, y+i+1] == 99:break
+        right += 1
+
+    #down space
+    down = 0
+    for i in range(puz_size-x-1):
+        if puz[x+i+1, y] == 99:break
+        down += 1
+
+    #left space
+    left = 0
+    for i in range(y):
+        if puz[x, y-1-i]==99:break
+        left += 1
+
+    return up,right,down,left
+
 def populate_reds(top,bottom,puz):
     fill_red_top_th = top
     fill_red_bottom_th = bottom
@@ -102,38 +132,8 @@ def populate_reds(top,bottom,puz):
     shapey = puz.shape[1]
     for i in range(shapex):
         for z in range(shapey):
-            border_stat = border_status(i,z)
-            #Top left corner
-            if border_stat == 1: puz[i,z] = 99
-            #free directions are down and right
-
-            #Top right corner
-            if border_stat == 2: puz[i,z] = 88
-            #free directions are down and left
-
-            #Bottom left corner
-            if border_stat == 3: puz[i,z] = 77
-            #free directions are up and right
-            
-            #Bottom right corner
-            if border_stat == 4: puz[i,z] = 66
-            #free directions are up and left
-
-            #Top non-corner
-            if border_stat == 5: puz[i,z] = 55
-            #free directions are left, down, and right
-
-            #Left non-corner
-            if border_stat == 6: puz[i,z] = 44
-            #free directions are up, right, and down
-
-            #Bottom non-corner
-            if border_stat == 7: puz[i,z] = 33
-            #free fdirections are left, up, and right
-
-            #Right non-corner
-            if border_stat == 8: puz[i,z] = 22
-            #free directions are up, left, and down
+            a,b,c,d = free_space(i,z,puz)
+            if ((a==0)and(b==0)and(c==0)and(d==0)):puz[i,z]=-1
 
 #Debug - shows blank grid
 print_line_break()
