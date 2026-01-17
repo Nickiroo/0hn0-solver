@@ -20,10 +20,14 @@ def print_line_break():
 
 def print_puzzle(puz):
     for row in puz:
-        print("   ")
         for element in row:
-            print(int(element), end='   ')
-    print("")
+            # Replace -1 with a standout symbol
+            if int(element) == -1:
+                print(" ■ ", end='  ')  # Using filled square symbol
+            else:
+                # Format each element to take up 3 characters for proper alignment
+                print(f"{int(element):3}", end='  ')
+        print()  # New line after each row
     
 def how_many_filled(puz):
     filled = 0
@@ -82,25 +86,25 @@ def free_space(x,y,puz):
     #up space
     up = 0
     for i in range(x):
-        if puz[x-i-1, y] == 99:break
+        if puz[x-i-1, y] == -1:break
         up += 1
 
     #right space
     right = 0
     for i in range(puz_size-y-1):
-        if puz[x, y+i+1] == 99:break
+        if puz[x, y+i+1] == -1:break
         right += 1
 
     #down space
     down = 0
     for i in range(puz_size-x-1):
-        if puz[x+i+1, y] == 99:break
+        if puz[x+i+1, y] == -1:break
         down += 1
 
     #left space
     left = 0
     for i in range(y):
-        if puz[x, y-1-i]==99:break
+        if puz[x, y-1-i]==-1:break
         left += 1
 
     return up,right,down,left
@@ -123,7 +127,7 @@ def populate_reds(top,bottom,puz):
             current_red_count = current_red_count + 1
         else:
             pass
-    if(debug_level > 3):print(f"The current red count is {current_red_count}")
+    if(debug_level >= 3):print(f"The current red count is {current_red_count}")
     if(debug_level >= 1):print(f"There are {how_many_filled(puzzle)} red dots in the first draft generated puzzle")
 
     if(debug_level > 3):print("Now going to check for holes to be filled")
