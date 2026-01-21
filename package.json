@@ -1,0 +1,21 @@
+{
+  "name": "0hn0-puzzle-generator",
+  "version": "1.0.0",
+  "description": "A puzzle generator for 0h n0 with unique solution guarantee",
+  "main": "puzzlegen.js",
+  "scripts": {
+    "start": "node puzzlegen.js",
+    "generate": "node puzzlegen.js"
+  },
+  "keywords": [
+    "puzzle",
+    "0hn0",
+    "generator",
+    "game"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
