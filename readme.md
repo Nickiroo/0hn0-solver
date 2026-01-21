@@ -1,36 +1,56 @@
-# 0h-n0 Puzzle Generator
+# 0h n0 - Puzzle Generator & Interactive Game
 
-Generates 0h-n0 puzzles with guaranteed unique solutions.
-
-Check out the game that inspired this: https://0hn0.com
-
-## Requirements
-
-- Node.js 12.0.0 or higher
+A fully playable web version of [0h n0](https://0hn0.com) with puzzle generation featuring guaranteed unique solutions!
 
 ## Features
 
-- **Unique Solution Guarantee**: Uses proper backtracking solver to ensure each puzzle has exactly one solution
-- **Configurable Difficulty**: Adjustable clue and wall ratios for easier or harder puzzles
-- **Smart Stripping**: Removes clues intelligently while maintaining uniqueness
-- **No Zero-Sees Tiles**: Ensures all non-wall tiles can see at least 1 other tile
-- **Constraint Enforcement**: No tile can see more than `n` tiles (where n is the puzzle size)
+### 🎮 Interactive Web Game
+- **Play in Browser**: Beautiful, responsive web interface styled like the original
+- **Multiple Sizes**: Play 4×4 through 9×9 puzzles, or create custom sizes
+- **Real-time Validation**: Check your solution and get instant feedback
+- **Timer**: Track how fast you can solve each puzzle
 
-## Usage
+### 🧩 Puzzle Generation
+- **Unique Solution Guarantee**: Uses proper backtracking solver to ensure each puzzle has exactly one solution
+- **Smart Stripping**: Removes clues intelligently while maintaining uniqueness
+- **Constraint Enforcement**: No tile can see more than `n` tiles (where n is the puzzle size)
+- **No Zero-Sees Tiles**: Ensures all non-wall tiles can see at least 1 other tile
+
+## Quick Start
 
 ```bash
-# Run directly
-node puzzlegen.js
-
-# Or use npm
+# Start the web server
 npm start
+
+# Then open your browser to:
+# http://localhost:3000
 ```
 
-When prompted, enter the puzzle size (3-12).
+## How to Play
 
-> **Note:** If you have a `venv/` directory from a previous Python version, you can safely delete it: `rm -rf venv/`
+1. **Choose a size** - Select from 4×4 to 9×9, or enter a custom size
+2. **Click tiles** to change their state:
+   - First click: Makes a blue tile with a number (how many tiles it sees)
+   - Second click: Makes a red wall (blocks vision)
+   - Third click: Returns to empty
+3. **Blue dots** can see others in their row and column
+4. **Their numbers** tell how many tiles they can see
+5. **Red dots (walls)** block their view
+6. **Click "Check"** when you think you've solved it!
 
-## How It Works
+## File Structure
+
+```
+├── index.html      # Main HTML page
+├── style.css       # Styling (0h n0 inspired design)
+├── game.js         # Web game logic and UI
+├── generator.js    # Puzzle generation logic
+├── solver.js       # Puzzle validation and solving
+├── server.js       # Simple HTTP server
+└── package.json    # NPM configuration
+```
+
+## How Puzzle Generation Works
 
 1. **Generate blank grid**: Creates an n×n grid of tile objects
 2. **Populate walls**: Randomly places walls (red dots) with hole-filling to avoid isolated tiles

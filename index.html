@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0h n0 - Puzzle Generator & Solver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Menu -->
+    <div id="main-menu" class="screen active">
+        <h1 class="title">0h n0</h1>
+        <p class="subtitle">A little logic game</p>
+        
+        <div class="menu-buttons">
+            <button class="menu-btn" id="play-btn">Play</button>
+            <button class="menu-btn" id="solve-btn">Solve</button>
+        </div>
+        
+        <div class="credits">
+            <p>Inspired by <a href="https://0hn0.com" target="_blank">0h n0</a> by Martin Kool</p>
+        </div>
+    </div>
+
+    <!-- Size Selection Screen -->
+    <div id="size-selection" class="screen">
+        <h2>Select puzzle size</h2>
+        
+        <div class="size-buttons">
+            <button class="size-btn" data-size="4">4×4</button>
+            <button class="size-btn" data-size="5">5×5</button>
+            <button class="size-btn" data-size="6">6×6</button>
+            <button class="size-btn" data-size="7">7×7</button>
+            <button class="size-btn" data-size="8">8×8</button>
+            <button class="size-btn" data-size="9">9×9</button>
+        </div>
+        
+        <div class="custom-size">
+            <label for="custom-size-input">Custom size:</label>
+            <input type="number" id="custom-size-input" min="3" max="12" placeholder="3-12">
+            <button class="size-btn" id="custom-size-btn">Go</button>
+        </div>
+        
+        <button class="back-btn" id="back-to-menu">← Back</button>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="screen">
+        <div class="game-header">
+            <button class="back-btn" id="back-to-size">← Back</button>
+            <div class="game-info">
+                <span id="puzzle-size"></span>
+                <span id="timer">0:00</span>
+            </div>
+            <button class="hint-btn" id="check-btn">Check</button>
+        </div>
+        
+        <div class="game-rules">
+            <p>Blue dots see others in their row and column.</p>
+            <p>Their numbers tell how many. Red dots block their view.</p>
+        </div>
+        
+        <div id="puzzle-container">
+            <div id="puzzle-grid"></div>
+        </div>
+        
+        <div id="game-message"></div>
+        
+        <div class="game-controls">
+            <button class="control-btn" id="new-puzzle-btn">New Puzzle</button>
+        </div>
+    </div>
+
+    <!-- Solve Screen (placeholder) -->
+    <div id="solve-screen" class="screen">
+        <h2>Puzzle Solver</h2>
+        <p>Coming soon...</p>
+        <button class="back-btn" id="back-from-solve">← Back</button>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Generating puzzle...</p>
+    </div>
+
+    <!-- Victory Modal -->
+    <div id="victory-modal" class="modal">
+        <div class="modal-content">
+            <h2>🎉 Congratulations!</h2>
+            <p>You solved the puzzle correctly!</p>
+            <p id="completion-time"></p>
+            <div class="modal-buttons">
+                <button class="menu-btn" id="new-puzzle-modal">New Puzzle</button>
+                <button class="menu-btn" id="back-menu-modal">Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="modal">
+        <div class="modal-content error">
+            <h2>Not quite right...</h2>
+            <p id="error-message"></p>
+            <button class="menu-btn" id="close-error">Continue</button>
+        </div>
+    </div>
+
+    <script src="generator.js"></script>
+    <script src="solver.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
