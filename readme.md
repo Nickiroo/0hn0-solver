@@ -1,6 +1,6 @@
 # 0h n0 - Puzzle Generator & Interactive Game
 
-A fully playable web version of [0h n0](https://0hn0.com) with puzzle generation featuring guaranteed unique solutions!
+An [0h n0](https://0hn0.com) solver with playable puzzle generation of custom sizes.
 
 ## Features
 
@@ -50,14 +50,7 @@ npm start
 └── package.json    # NPM configuration
 ```
 
-## How Puzzle Generation Works
 
-1. **Generate blank grid**: Creates an n×n grid of tile objects
-2. **Populate walls**: Randomly places walls (red dots) with hole-filling to avoid isolated tiles
-3. **Enforce constraints**: Ensures no tile sees more than n tiles
-4. **Calculate sees values**: Each tile gets its correct "sees" value
-5. **Strip intelligently**: Removes clues and walls while verifying uniqueness after each removal
-6. **Verify**: Final check that puzzle has exactly one solution
 
 ## Algorithm Details
 
